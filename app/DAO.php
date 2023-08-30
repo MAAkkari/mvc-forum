@@ -15,7 +15,7 @@
         private static $host   = 'mysql:host=127.0.0.1;port=3306';
         private static $dbname = 'aziz_forum';
         private static $dbuser = 'root';
-        private static $dbpass = '';
+        private static $dbpass = 'Zizo200719995060.';
 
         private static $bdd;
 

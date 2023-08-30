@@ -30,5 +30,10 @@
             );
             
         }
+        public function newPost($id){
+            $text = filter_input(INPUT_POST,"text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $sql = "INSERT INTO post (text , user_id , topic_id )
+            VALUE ('$text', 2 , $id) " ; 
+        }
 
     }

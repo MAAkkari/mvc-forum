@@ -74,6 +74,24 @@
                 ]
             ];
         }
+        public function nvTopic($id){
+            $topicManager = new TopicManager();
+            $topicManager->newTopic($id);
+        }
+        public function nvPost($id){
+            $postManager = new PostManager();
+            $postManager->newPost($id); 
+        }
+        public function deleteTopic($id){
+            $topicManager = new TopicManager();
+            $topicManager->delete($id);
+        }
+        public function deletePost($id){
+            $postManager = new PostManager();
+            $postManager->delete($id); 
+        }
+        
+        
 
       
         

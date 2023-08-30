@@ -31,6 +31,16 @@
                 $this->className
             );
         }
+        public function newTopic($id){
+            $titre = filter_input(INPUT_POST,"titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $message = filter_input(INPUT_POST,"message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $sql = "INSERT INTO topic (titre, fermer , categorie_id , user_id ) 
+            VALUE ( '$titre', 0 , $id , 2 ) ;
+            INSERT INTO post (text , user_id , topic_id )
+            VALUE ( '$message' , 2 , select( id_topic from topic where titre=$titre ) ) " ; 
+        }
+
+       
 
 
 
