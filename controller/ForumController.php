@@ -62,6 +62,7 @@
             ];
         }
 
+
         public function listTopicPosts($id){
             $postManager = new PostManager();
             $topicManager = new TopicManager();
@@ -74,23 +75,58 @@
                 ]
             ];
         }
+
         public function nvTopic($id){
             $topicManager = new TopicManager();
-            $topicManager->newTopic($id);
+            $postManager = new PostManager();
+            $titre = filter_input(INPUT_POST,"titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $message = filter_input(INPUT_POST,"message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $data=['titre'=>$titre , 'categorie_id'=>$id , 'user_id'=>2];
+            $idTopic=$topicManager->Add($data);
+            $dataPost=['text'=>$message , 'user_id'=>2 , 'topic_id'=>$idTopic];
+            $postManager->add($dataPost);
+            $this->redirectTo("forum" , "listCategorieTopics",$id);
         }
+
         public function nvPost($id){
             $postManager = new PostManager();
-            $postManager->newPost($id); 
+            $text = filter_input(INPUT_POST,"text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $data =['text'=>$text , 'user_id'=>2 , 'topic_id'=>$id];
+            $postManager->Add($data);
+            $this->redirectTo("forum" , "listTopicPosts", $id);
         }
+
         public function deleteTopic($id){
             $topicManager = new TopicManager();
+            $topic = $topicManager->findOneById($id);
+            $categorieId = $topic->getCategorie()->getId();
             $topicManager->delete($id);
+            $this->redirectTo("forum" , "listCategorieTopics", $categorieId);
         }
+
         public function deletePost($id){
             $postManager = new PostManager();
-            $postManager->delete($id); 
+            $post = $postManager->findOneById($id);
+            $topicId=$post->getTopic()->getId();
+            $postManager->delete($id);
+            $this->redirectTo("forum" , "listTopicPosts", $topicId);
         }
-        
+
+        public function infoFormTopic($id){
+            $topicManager = new TopicManager();
+            return [
+                "view"=>VIEW_DIR."forum/editTopic.php",
+                "topic"=>$topicManager->findOneById($id)
+            ];
+        }
+
+        public function editTopic($id){
+            $topicManager = new TopicManager();
+            
+        }
+        public function editTopic($id){
+
+        }
         
 
       

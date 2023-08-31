@@ -1,9 +1,8 @@
-<?php
-$topic = $result['topics'];
-$categorie = $topics->getCategorie();
-?>
+<?php 
+$topic = $result["data"]['topic'];
 
-<form method="post" action="index.php?ctrl=forum&action=editTopic&id=<?= $topic->getId() ?>">
+?>
+<form method="post" value =" " action="index.php?ctrl=forum&action=nvTopic&id=<?= $categorie->getId() ?>">
     <p><label>Titre du topic</label>
     <input type="text" name="titre" required></p>
 
@@ -11,4 +10,4 @@ $categorie = $topics->getCategorie();
     <input type="text" name="message" required></p>
 
     <input  type="submit" name="submit" value="submit">
-</form>
+</form> 
