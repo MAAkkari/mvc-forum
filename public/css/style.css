@@ -1,0 +1,15 @@
+
+
+.FormTopic{
+    display:none;
+    
+}
+.FormActive{
+    display:flex !important;
+    align-items: center ;
+    column-gap: 10px;
+
+}
+.SubmitEditTopic{
+    height: 25px;
+}

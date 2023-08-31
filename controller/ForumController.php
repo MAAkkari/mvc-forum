@@ -57,7 +57,8 @@
                 "view" => VIEW_DIR."forum/categorieTopics.php",
                 "data" => [
                 "topics" => $topicManager->categorieTopics($id,["dateCreation", "DESC"]),
-                "nomCategorie" => $categorieManager->findOneById($id)
+                "nomCategorie" => $categorieManager->findOneById($id),
+                "AllCategories" => $categorieManager->findAll(["nom", "ASC"])
                 ]
             ];
         }
@@ -71,7 +72,7 @@
                 "view" => VIEW_DIR."forum/topicPosts.php",
                 "data" => [
                 "topic" => $topicManager->findOneById($id),
-                "posts" => $postManager->topicPosts($id,["dateCreation", "DESC"])
+                "posts" => $postManager->topicPosts($id,["dateCreation", "ASC"])
                 ]
             ];
         }
@@ -109,22 +110,18 @@
             $post = $postManager->findOneById($id);
             $topicId=$post->getTopic()->getId();
             $postManager->delete($id);
-            $this->redirectTo("forum" , "listTopicPosts", $topicId);
-        }
-
-        public function infoFormTopic($id){
-            $topicManager = new TopicManager();
-            return [
-                "view"=>VIEW_DIR."forum/editTopic.php",
-                "topic"=>$topicManager->findOneById($id)
-            ];
+            $this->redirectTo("forum","listTopicPosts", $topicId);
         }
 
         public function editTopic($id){
             $topicManager = new TopicManager();
-            
+            $topicManager->editTopicManager($id);
+            $topic = $topicManager->findOneById($id);
+            $categorieId = $topic->getCategorie()->getId();
+            $this->redirectTo("forum" , "listCategorieTopics", $categorieId);
         }
-        public function editTopic($id){
+
+        public function editPost($id){
 
         }
         

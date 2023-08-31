@@ -32,7 +32,21 @@
             );
         }
 
-        public function info 
+        public function editTopicManager($id){
+            $titre = filter_input(INPUT_POST,"titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $fermer = filter_input(INPUT_POST,"fermer", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $categorieId= filter_input(INPUT_POST,"categorie", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+           
+
+            $sql = prepare ( "UPDATE topic SET 
+                    titre = $titre , 
+                    fermer = $fermer,
+                    categorie_id = $categorieId
+                    WHERE id_topic = $id" );
+            $sql->execute();         
+            return $id;
+        }
+        
 
 
 
