@@ -13,6 +13,20 @@
         public function __construct(){
             parent::connect();
         }
+        
+        public function registerRequest(){
+            
+
+        }
+
+        public function loginRequest(){
+
+
+        }
+
+
+       
+
 
 
     }
