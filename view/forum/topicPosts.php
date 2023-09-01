@@ -3,14 +3,41 @@
     $topic =$result["data"]["topic"];
    
 ?>
-<h1> topic > <?= $topic->getTitre()?></h1>
+<div class="LiensPathForum">
+
+    <a href="index.php?ctrl=forum&action=listCategories">Liste catrogories</a> 
+    <p>> </p> 
+    <a href="index.php?ctrl=forum&action=listCategorieTopics&id=<?=$topic->getCategorie()->getId()?>">
+    <?= $topic->getCategorie()->getNom()?></a>
+    <p>> </p>
+    <p><?= $topic->getTitre()?></p>
+
+</div>
 
 
-<?php if($posts ){
+<?php $x=1;
+if($posts ){
  foreach($posts as $post){ ?>
-<p><?= $post->getText() ?></p> 
-<a style="color:red ;" href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>">Supprimer ce post</a>
-<?php }}
+    <div class="flex" >
+
+        <p><?= $post->getText() ?></p> 
+        <a style="color:red ;" href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>">Supprimer ce post</a>
+        <button onclick=" if( document.querySelector('.FormTopic<?=$x?>').classList.contains('FormActive') ){
+        document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')}else  {
+        document.querySelector('.FormTopic<?=$x?>').classList.add('FormActive') }">modifier</button>
+
+    </div>
+
+    <form class="FormTopic FormTopic<?=$x?>"method="post" action="index.php?ctrl=forum&action=editPost&id=<?= $post->getId() ?>">
+
+        <p><label>texte</label>
+        <input value="<?= $post->getText() ?>" type="text" name="text" required></p>
+        <input  class="SubmitEditTopic" type="submit" name="submit" value="submit">
+
+    </form>
+   
+<?php  $x+=1; }
+}
 else { echo " il n'y aucun post dans ce topic ";} ?>
 
 <form method="post" action="index.php?ctrl=forum&action=nvPost&id=<?= $topic->getId() ?>">

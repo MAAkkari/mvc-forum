@@ -30,6 +30,14 @@
             );
             
         }
+        public function editPostManager($id){
+            $text = filter_input(INPUT_POST,"text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $sql = "UPDATE post SET 
+                    text = '$text'
+                    Where id_post=$id";
+
+            DAO::Select($sql);
+        }
         
 
     }

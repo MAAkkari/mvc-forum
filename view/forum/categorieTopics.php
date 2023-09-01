@@ -15,7 +15,7 @@ if( $topics ){
     foreach($topics as $topic ){
         
         ?>
-        <div style="display:flex ; column-gap: 7px ;">
+        <div class="flex">
             <a href="index.php?ctrl=forum&action=listTopicPosts&id=<?=$topic->getId()?>">
             Topic <?= $x." : ". $topic->getTitre()?></a> <br>
             <a style="color:red ;" href="index.php?ctrl=forum&action=deleteTopic&id=<?= $topic->getId() ?>">Supprimer </a>

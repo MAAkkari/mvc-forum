@@ -122,7 +122,11 @@
         }
 
         public function editPost($id){
-
+            $postManager = new PostManager();
+            $postManager->editPostManager($id);
+            $post = $postManager -> findOneById($id);
+            $topicId=$post->getTopic()->getId();
+            $this->redirectTo("forum" , "listTopicPosts", $topicId);
         }
         
 
