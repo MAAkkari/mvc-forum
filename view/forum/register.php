@@ -1,4 +1,4 @@
-<form action="index.php?ctrl=forum&action=register">
+<form class="formRegister" method="post" action="index.php?ctrl=security&action=register">
 
     <label for="email">Email</label>
     <input type="email" name="email" placeholder="exemple@exemple.com">

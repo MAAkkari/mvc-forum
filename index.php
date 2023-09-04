@@ -30,6 +30,7 @@
     //on vérifie que le namespace pointe vers une classe qui existe
     if(!class_exists($ctrlNS)){
         //si c'est pas le cas, on choisit le namespace du controller par défaut
+        echo $ctrlNS;die;
         $ctrlNS = "controller\\".DEFAULT_CTRL."Controller";
     }
     $ctrl = new $ctrlNS();

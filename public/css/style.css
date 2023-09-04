@@ -23,3 +23,15 @@
     align-items: center;
     column-gap: 10px;
 }
+.formRegister{
+    display:flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+    
+}
+.formRegister input {
+    width: 30%;
+    height: 40px;
+
+}

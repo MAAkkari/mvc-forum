@@ -20,7 +20,7 @@ if($posts ){
  foreach($posts as $post){ ?>
     <div class="flex" >
 
-        <p><?= $post->getText() ?></p> 
+        <p><?=  htmlspecialchars_decode($post->getText())  ?></p> 
         <a style="color:red ;" href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>">Supprimer ce post</a>
         <button onclick=" if( document.querySelector('.FormTopic<?=$x?>').classList.contains('FormActive') ){
         document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')}else  {
@@ -31,7 +31,7 @@ if($posts ){
     <form class="FormTopic FormTopic<?=$x?>"method="post" action="index.php?ctrl=forum&action=editPost&id=<?= $post->getId() ?>">
 
         <p><label>texte</label>
-        <input value="<?= $post->getText() ?>" type="text" name="text" required></p>
+        <input class="post" value="<?= $post->getText() ?>" type="text" name="text" required></p>
         <input  class="SubmitEditTopic" type="submit" name="submit" value="submit">
 
     </form>
