@@ -49,6 +49,19 @@
             
         }
 
+        public function lockTopic($id){
+            $topic =$this->findOneById($id);
+            if ( $topic->getFermer()==0){
+                $sql = ("UPDATE topic SET fermer=1 WHERE id_topic =:id");
+            }else {
+                $sql = ("UPDATE topic SET fermer=0 WHERE id_topic =:id");
+            }
+            DAO::select($sql,['id'=>$id]);  
+            
+        }
+        public function MadeBy($user){
+            if ( $this->getUser() == $user) {return true;}else{return false ;}
+        }
 
 
     }

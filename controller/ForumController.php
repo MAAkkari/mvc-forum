@@ -129,6 +129,12 @@
             $this->redirectTo("forum" , "listTopicPosts", $topicId);
         }
         
+        public function lock($id){
+            $topicManager = new TopicManager(); 
+            $categorieId=$topicManager->findOneById($id)->getCategorie()->getId();
+            $topicManager->lockTopic($id);
+            $this->redirectTo("forum" , "listCategorieTopics", $categorieId);
+        }
 
       
         

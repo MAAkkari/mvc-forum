@@ -8,7 +8,7 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
 }
 
 ?>
-<h1>categorie : <?= $categorie->getNom() ?></h1>
+<h1> <?= $categorie->getNom() ?></h1>
 <?php
 $x=1;
 if( $topics ){
@@ -22,6 +22,12 @@ if( $topics ){
             <button onclick=" if( document.querySelector('.FormTopic<?=$x?>').classList.contains('FormActive') ){
                 document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')}else  {
             document.querySelector('.FormTopic<?=$x?>').classList.add('FormActive') }">modifier</button>
+
+            <a href="index.php?ctrl=forum&action=lock&id=<?=$topic->getId()?>"> 
+                    <?php if( $topic->getFermer() == 1) {?>
+                        <i class="fa-solid fa-lock"></i> <?php }
+                    else {?><i class="fa-solid fa-unlock"></i> <?php } ?>   
+            </a>
 
         
         </div>

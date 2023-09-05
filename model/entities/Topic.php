@@ -121,7 +121,6 @@
         public function setCategorie($categorie)
         {
                 $this->categorie = $categorie;
-
                 return $this;
         }
     }

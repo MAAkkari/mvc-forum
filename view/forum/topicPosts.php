@@ -23,7 +23,7 @@ if($posts ){
         <p><?=  htmlspecialchars_decode($post->getText())  ?></p> 
         <a style="color:red ;" href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>">Supprimer ce post</a>
         <button onclick=" if( document.querySelector('.FormTopic<?=$x?>').classList.contains('FormActive') ){
-        document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')}else  {
+        document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')} else {
         document.querySelector('.FormTopic<?=$x?>').classList.add('FormActive') }">modifier</button>
 
     </div>
@@ -38,7 +38,8 @@ if($posts ){
    
 <?php  $x+=1; }
 }
-else { echo " il n'y aucun post dans ce topic ";} ?>
+else { echo " il n'y aucun post dans ce topic ";} 
+if ($topic->getFermer()==0){ ?>
 
 <form method="post" action="index.php?ctrl=forum&action=nvPost&id=<?= $topic->getId() ?>">
 <p><label>Text</label>
@@ -46,3 +47,4 @@ else { echo " il n'y aucun post dans ce topic ";} ?>
 
     <input  type="submit" name="submit" value="submit">
 </form>
+<?php } else { ?> <p>Ce Topic est Verrouiller impossible d'ajouter des posts </p><?php }

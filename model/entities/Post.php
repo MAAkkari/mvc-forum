@@ -57,7 +57,9 @@
             $this->topic=$topic;
             return $this;
         }
-       
+        public function MadeBy($user){
+            if ( $this->getUser() == $user) {return true;}else{return false ;}
+        }
 
        
 

@@ -35,3 +35,9 @@
     height: 40px;
 
 }
+.fa-unlock{
+    color:green;
+}
+.fa-lock{
+    color:red ;
+}

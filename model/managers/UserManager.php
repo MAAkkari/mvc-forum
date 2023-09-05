@@ -15,24 +15,28 @@
         }
 
         public function findOneByMail($mail){
-            $sql="SELECT * FROM user WHERE user.email=:mail";
-            
-            
-                DAO::select($sql,['mail'=>$mail]);
+            $sql = "SELECT *
+            FROM ".$this->tableName." a
+            WHERE a.email= :mail
+            ";
+            return $this->getOneOrNullResult(
+            DAO::select($sql, ['mail' => $mail], false), 
+            $this->className
+            );
                
         }
         public function findOneByPseudo($pseudo){
-            $sql="select * from user where user.pseudo=:pseudo";
-
+            $sql = "SELECT *
+            FROM ".$this->tableName." a
+            WHERE a.pseudo= :pseudo
+            ";
             return $this->getOneOrNullResult(
-                DAO::select($sql, []), 
-                $this->className
+            DAO::select($sql, ['pseudo' => $pseudo], false), 
+            $this->className
             );
         }
         
-        public function loginRequest(){
-
-        }
+    
 
 
        
