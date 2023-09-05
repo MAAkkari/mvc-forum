@@ -57,8 +57,12 @@
             $this->topic=$topic;
             return $this;
         }
-        public function MadeBy($user){
-            if ( $this->getUser() == $user) {return true;}else{return false ;}
+        public function MadeBy($user=null){
+            
+            if ( $user != null ) {
+                if (  $this->getUser()->getId() == $user->getId() || $user->getRole() == 'ROLE_ADMIN') {return true;} else {return false ;}
+            } else {return false ;}
+    
         }
 
        

@@ -123,4 +123,11 @@
                 $this->categorie = $categorie;
                 return $this;
         }
-    }
+        public function MadeBy($user=null){
+                if ( $user != null ) {
+                if (  $this->getUser()->getId() == $user->getId() || $user->getRole() == 'ROLE_ADMIN') {return true;} else {return false ;}
+            } else {return false ;}
+    
+        }
+
+}

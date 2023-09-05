@@ -32,8 +32,6 @@
 
             $categorieManager = new CategorieManager();
 
- 
-
             return [
 
                 "view" => VIEW_DIR."forum/listCategories.php",
@@ -45,9 +43,6 @@
                 ]
 
             ];
-
- 
-
         }
         public function listCategorieTopics($id){
             $topicManager = new TopicManager();
@@ -80,11 +75,13 @@
         public function nvTopic($id){
             $topicManager = new TopicManager();
             $postManager = new PostManager();
+            var_dump($id);echo "<br>";
+            var_dump($_SESSION["user"]->getId());
             $titre = filter_input(INPUT_POST,"titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $message = filter_input(INPUT_POST,"message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $data=['titre'=>$titre , 'categorie_id'=>$id , 'user_id'=>2];
+            $data=['titre'=>$titre , 'categorie_id'=>$id , 'user_id'=>$_SESSION["user"]->getId()];
             $idTopic=$topicManager->Add($data);
-            $dataPost=['text'=>$message , 'user_id'=>2 , 'topic_id'=>$idTopic];
+            $dataPost=['text'=>$message , 'user_id'=>$_SESSION["user"]->getId() , 'topic_id'=>$idTopic];
             $postManager->add($dataPost);
             $this->redirectTo("forum" , "listCategorieTopics",$id);
         }
@@ -92,48 +89,71 @@
         public function nvPost($id){
             $postManager = new PostManager();
             $text = filter_input(INPUT_POST,"text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $data =['text'=>$text , 'user_id'=>2 , 'topic_id'=>$id];
+            $data =['text'=>$text , 'user_id'=>$_SESSION["user"]->getId() , 'topic_id'=>$id];
             $postManager->Add($data);
             $this->redirectTo("forum" , "listTopicPosts", $id);
         }
 
         public function deleteTopic($id){
+
+
+
             $topicManager = new TopicManager();
-            $topic = $topicManager->findOneById($id);
-            $categorieId = $topic->getCategorie()->getId();
-            $topicManager->delete($id);
-            $this->redirectTo("forum" , "listCategorieTopics", $categorieId);
+            if ( $_SESSION["user"] !=null && $topicManager->findOneById($id)->MadeBy($_SESSION["user"]) ) {
+                $topic = $topicManager->findOneById($id);
+                $categorieId = $topic->getCategorie()->getId();
+                $topicManager->delete($id);
+                $this->redirectTo("forum" , "listCategorieTopics", $categorieId);
+            } 
+                else { $this->redirectTo("forum" , "listCategories");}
+
+
+
         }
 
         public function deletePost($id){
             $postManager = new PostManager();
+            if ( $_SESSION["user"] !=null && $postManager->findOneById($id)->MadeBy($_SESSION["user"]) ){
             $post = $postManager->findOneById($id);
             $topicId=$post->getTopic()->getId();
             $postManager->delete($id);
             $this->redirectTo("forum","listTopicPosts", $topicId);
+        } 
+            else { $this->redirectTo("forum" , "listCategories"); }
         }
+        
 
         public function editTopic($id){
+            
             $topicManager = new TopicManager();
+            if ( $_SESSION["user"] !=null && $topicManager->findOneById($id)->MadeBy($_SESSION["user"]) ) {
             $topicManager->editTopicManager($id);
             $topic = $topicManager->findOneById($id);
             $categorieId = $topic->getCategorie()->getId();
-            $this->redirectTo("forum" , "listCategorieTopics", $categorieId);
+            $this->redirectTo("forum" , "listCategorieTopics", $categorieId); 
+        } 
+            else { $this->redirectTo("forum" , "listCategories"); }
         }
 
         public function editPost($id){
             $postManager = new PostManager();
+            if ( $_SESSION["user"] !=null && $postManager->findOneById($id)->MadeBy($_SESSION["user"]) ){
             $postManager->editPostManager($id);
             $post = $postManager -> findOneById($id);
             $topicId=$post->getTopic()->getId();
             $this->redirectTo("forum" , "listTopicPosts", $topicId);
+            } 
+            else { $this->redirectTo("forum" , "listCategories"); }
         }
         
         public function lock($id){
-            $topicManager = new TopicManager(); 
-            $categorieId=$topicManager->findOneById($id)->getCategorie()->getId();
-            $topicManager->lockTopic($id);
-            $this->redirectTo("forum" , "listCategorieTopics", $categorieId);
+            $topicManager = new TopicManager();
+            if ( $_SESSION["user"] !=null && $topicManager->findOneById($id)->MadeBy($_SESSION["user"]) ) {
+                $categorieId=$topicManager->findOneById($id)->getCategorie()->getId();
+                $topicManager->lockTopic($id);
+                $this->redirectTo("forum" , "listCategorieTopics", $categorieId);
+            } 
+            else { $this->redirectTo("forum" , "listCategories");}
         }
 
       

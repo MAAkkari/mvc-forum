@@ -18,16 +18,28 @@ if( $topics ){
         <div class="flex">
             <a href="index.php?ctrl=forum&action=listTopicPosts&id=<?=$topic->getId()?>">
             Topic <?= $x." : ". $topic->getTitre()?></a> <br>
+
+
+            <?php if ($topic->MadeBy($_SESSION["user"]) ) {?> <p>
             <a style="color:red ;" href="index.php?ctrl=forum&action=deleteTopic&id=<?= $topic->getId() ?>">Supprimer </a>
             <button onclick=" if( document.querySelector('.FormTopic<?=$x?>').classList.contains('FormActive') ){
                 document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')}else  {
             document.querySelector('.FormTopic<?=$x?>').classList.add('FormActive') }">modifier</button>
 
+
+            
+
             <a href="index.php?ctrl=forum&action=lock&id=<?=$topic->getId()?>"> 
                     <?php if( $topic->getFermer() == 1) {?>
                         <i class="fa-solid fa-lock"></i> <?php }
                     else {?><i class="fa-solid fa-unlock"></i> <?php } ?>   
-            </a>
+            </a> 
+            </p>
+            <?php } else { ?> 
+                <p> <?php if( $topic->getFermer() == 1) {?>
+                        <i class="fa-solid fa-lock"></i> <?php }
+                    else {?><i class="fa-solid fa-unlock"></i> <?php } ?> </p>
+            <?php } ?>
 
         
         </div>
@@ -60,7 +72,10 @@ if( $topics ){
 else {
     
     ?> <p>cette categorie n'a aucun topic</p>
-<?php } ?>
+<?php } 
+
+if(App\Session::getUser()){?>
+
 
 <form method="post" action="index.php?ctrl=forum&action=nvTopic&id=<?= $categorie->getId() ?>">
     <p><label>Titre du topic</label>
@@ -71,3 +86,12 @@ else {
 
     <input  type="submit" name="submit" value="submit">
 </form>
+<?php
+} else { ?> 
+    <p>
+        <a href="index.php?ctrl=security&action=login">Connecter</a>
+        ou 
+        <a href="index.php?ctrl=security&action=register"> Inscriver</a>
+        vous pour ajouter un post !
+
+    </p> <?php }
