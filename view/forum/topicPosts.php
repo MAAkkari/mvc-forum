@@ -21,7 +21,8 @@ if($posts ){
     <div class="flex" >
 
         <p><?=  htmlspecialchars_decode($post->getText())  ?></p>  
-        
+        <p> <?=$post->getDateCreation() ?> </p>
+            <p>de: <?=$post->getUser() ?> </p>
         <?php if ($post->MadeBy($_SESSION["user"]) ) {?>
 
             <a style="color:red ;" href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>">Supprimer ce post</a>

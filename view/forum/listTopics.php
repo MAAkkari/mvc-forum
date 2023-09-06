@@ -9,10 +9,14 @@ $topics = $result["data"]['topics'];
 <?php
 if ( $topics ){
 foreach($topics as $topic ){
-    ?>
-  <a  href="index.php?ctrl=forum&action=listTopicPosts&id=<?=$topic->getId()?>">
-  <?=$topic->getTitre()?></a>
+  ?>
+  <div>
+    <a  href="index.php?ctrl=forum&action=listTopicPosts&id=<?=$topic->getId()?>">
+    <?=$topic->getTitre()?></a>
+    <p> <?=$topic->getDateCreation() ?> </p>
+  </div>
     <?php
+    
 }
 
 }else { echo " il n'y aucun topic dans la base de donnée ";}

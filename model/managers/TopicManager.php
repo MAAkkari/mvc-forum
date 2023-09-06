@@ -41,7 +41,8 @@
             $sql = ("UPDATE topic SET 
                     titre = '$titre' , 
                     fermer = $fermer,
-                    categorie_id = $categorieId
+                    categorie_id = $categorieId,
+                    dateModif = CURRENT_TIMESTAMP()
                     WHERE id_topic = $id");
             
            
@@ -59,6 +60,7 @@
             DAO::select($sql,['id'=>$id]);  
             
         }
+        
       
 
 

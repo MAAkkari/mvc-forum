@@ -11,6 +11,7 @@
         private $dateCreation;
         private $fermer;
         private $categorie;
+        private $dateModif;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -76,13 +77,35 @@
         }
 
         public function getDateCreation(){
-            $formattedDate = $this->dateCreation->format("d/m/Y, H:i:s");
+        if( $this->dateCreation->format("d/m/Y") == date_create()->format("d/m/Y") ){
+            $formattedDate = $this->dateCreation->format("H:i:s"); }
+            else {  $formattedDate = $this->dateCreation->format("d/m/Y"); }
             return $formattedDate;
         }
 
         public function setDateCreation($date){
             $this->dateCreation = new \DateTime($date);
             return $this;
+        }
+        public function getDateModif(){
+                
+                if ( $this->dateModif != null ){
+                if( $this->dateModif->format("d/m/Y") == date_create()->format("d/m/Y") ){
+                    $formattedDate = $this->dateModif->format("H:i:s"); }
+                    else {  $formattedDate = $this->dateModif->format("d/m/Y"); }
+                    return $formattedDate;
+                } else { return null;}
+                }
+        
+        public function setDateModif($date=null){
+                if( $date !=null){
+                $this->dateModif = new \DateTime($date);
+                }
+                else {
+                $this->dateModif=null;
+                }
+                return $this;
+                
         }
 
         /**

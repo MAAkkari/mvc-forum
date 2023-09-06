@@ -30,6 +30,12 @@
 
         }
 
+        public function nbPostsManager($id){
+            $sql = " SELECT COUNT(topic_id) AS nbPosts FROM post WHERE topic_id IN 
+            ( SELECT id_topic FROM topic WHERE categorie_id = :id ) ";
+            DAO::select($sql,['id'=>$id]);
+        }
+
  
 
  

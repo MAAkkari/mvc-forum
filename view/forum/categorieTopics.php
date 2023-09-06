@@ -18,13 +18,18 @@ if( $topics ){
         <div class="flex">
             <a href="index.php?ctrl=forum&action=listTopicPosts&id=<?=$topic->getId()?>">
             Topic <?= $x." : ". $topic->getTitre()?></a> <br>
+            <p> <?=$topic->getDateCreation() ?> </p>
+            <p>de: <?=$topic->getUser() ?> </p>
+            <?php if ($topic->getDateModif()  != null ) {?>
+            <p>modifier le : <?=$topic->getDateModif()?></p>
 
 
-            <?php if ($topic->MadeBy($_SESSION["user"]) ) {?> <p>
+
+            <?php } if (isset($_SESSION["user"]) && $topic->MadeBy($_SESSION["user"]) ) {?> <p>
             <a style="color:red ;" href="index.php?ctrl=forum&action=deleteTopic&id=<?= $topic->getId() ?>">Supprimer </a>
             <button onclick=" if( document.querySelector('.FormTopic<?=$x?>').classList.contains('FormActive') ){
                 document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')}else  {
-            document.querySelector('.FormTopic<?=$x?>').classList.add('FormActive') }">modifier</button>
+            document.querySelector('.FormTopic<?=$x?>').classList.add('FormActive') }">modifié</button>
 
 
             

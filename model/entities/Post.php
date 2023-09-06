@@ -19,8 +19,10 @@
             return $this->id;
         }
         public function getDateCreation(){
-            $formattedDate = $this->dateCreation->format("d/m/Y, H:i:s");
-            return $formattedDate;
+            if( $this->dateCreation->format("d/m/Y") == date_create()->format("d/m/Y") ){
+                $formattedDate = $this->dateCreation->format("H:i:s"); }
+                else {  $formattedDate = $this->dateCreation->format("d/m/Y"); }
+                return $formattedDate;
         }
         public function getText(){
             return $this->text ;

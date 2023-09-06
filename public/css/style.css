@@ -41,3 +41,8 @@
 .fa-lock{
     color:red ;
 }
+#nav-right{
+    margin-top: 10px;
+    display:flex;
+    column-gap: 25px;
+}

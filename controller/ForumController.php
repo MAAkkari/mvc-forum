@@ -39,7 +39,7 @@
                 "data" => [
 
                     "categories" => $categorieManager->findAll(["nom", "ASC"])
-
+                    
                 ]
 
             ];
@@ -75,14 +75,13 @@
         public function nvTopic($id){
             $topicManager = new TopicManager();
             $postManager = new PostManager();
-            var_dump($id);echo "<br>";
-            var_dump($_SESSION["user"]->getId());
             $titre = filter_input(INPUT_POST,"titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $message = filter_input(INPUT_POST,"message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $data=['titre'=>$titre , 'categorie_id'=>$id , 'user_id'=>$_SESSION["user"]->getId()];
             $idTopic=$topicManager->Add($data);
             $dataPost=['text'=>$message , 'user_id'=>$_SESSION["user"]->getId() , 'topic_id'=>$idTopic];
             $postManager->add($dataPost);
+            Session::addFlash("success","Ajout du Topic avec succes");
             $this->redirectTo("forum" , "listCategorieTopics",$id);
         }
 
@@ -91,21 +90,21 @@
             $text = filter_input(INPUT_POST,"text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $data =['text'=>$text , 'user_id'=>$_SESSION["user"]->getId() , 'topic_id'=>$id];
             $postManager->Add($data);
+            Session::addFlash("success","Ajout du post avec succes");
             $this->redirectTo("forum" , "listTopicPosts", $id);
         }
 
         public function deleteTopic($id){
-
-
-
             $topicManager = new TopicManager();
             if ( $_SESSION["user"] !=null && $topicManager->findOneById($id)->MadeBy($_SESSION["user"]) ) {
                 $topic = $topicManager->findOneById($id);
                 $categorieId = $topic->getCategorie()->getId();
                 $topicManager->delete($id);
+                Session::addFlash("success","Suppression du topic reussi ! ");
                 $this->redirectTo("forum" , "listCategorieTopics", $categorieId);
             } 
-                else { $this->redirectTo("forum" , "listCategories");}
+                else { Session::addFlash("error","Echec de la suppression ");
+                        $this->redirectTo("forum" , "listCategories");}
 
 
 
@@ -117,9 +116,11 @@
             $post = $postManager->findOneById($id);
             $topicId=$post->getTopic()->getId();
             $postManager->delete($id);
+            Session::addFlash("success","Suppression reussi ! ");
             $this->redirectTo("forum","listTopicPosts", $topicId);
         } 
-            else { $this->redirectTo("forum" , "listCategories"); }
+            else { Session::addFlash("error","Echec de la Suppression");
+                $this->redirectTo("forum" , "listCategories"); }
         }
         
 
@@ -130,9 +131,11 @@
             $topicManager->editTopicManager($id);
             $topic = $topicManager->findOneById($id);
             $categorieId = $topic->getCategorie()->getId();
+            Session::addFlash("success","Topic Modifier avec succes");
             $this->redirectTo("forum" , "listCategorieTopics", $categorieId); 
         } 
-            else { $this->redirectTo("forum" , "listCategories"); }
+            else { Session::addFlash("error","Echec de la modification");
+                 $this->redirectTo("forum" , "listCategories"); }
         }
 
         public function editPost($id){
@@ -141,9 +144,11 @@
             $postManager->editPostManager($id);
             $post = $postManager -> findOneById($id);
             $topicId=$post->getTopic()->getId();
+            Session::addFlash("success","Post Modifier avec succes");
             $this->redirectTo("forum" , "listTopicPosts", $topicId);
             } 
-            else { $this->redirectTo("forum" , "listCategories"); }
+            else {  Session::addFlash("error","Echec de la modification du post");
+                $this->redirectTo("forum" , "listCategories"); }
         }
         
         public function lock($id){
@@ -151,9 +156,13 @@
             if ( $_SESSION["user"] !=null && $topicManager->findOneById($id)->MadeBy($_SESSION["user"]) ) {
                 $categorieId=$topicManager->findOneById($id)->getCategorie()->getId();
                 $topicManager->lockTopic($id);
+                Session::addFlash("success","Verrouillage / Deverrouillage reussi");
                 $this->redirectTo("forum" , "listCategorieTopics", $categorieId);
-            } 
-            else { $this->redirectTo("forum" , "listCategories");}
+            }
+            else {
+                Session::addFlash("error","Verrouillage/Deverrouillage echoué");
+                $this->redirectTo("forum" , "listCategories");
+            }
         }
 
       
