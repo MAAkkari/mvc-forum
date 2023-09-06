@@ -31,6 +31,12 @@
             // On récupère les catégories et on les envoie à la vue
 
             $categorieManager = new CategorieManager();
+            $categs=$categorieManager->findAll(["nom", "ASC"]);
+            $tabCategories=[];
+            foreach($categs as $categorie){
+                var_dump( $categorieManager->infoCategorie($categorie->getId()) );die;
+                array_push($tabCategories , $categorieManager->infoCategorie($categorie->getId()));
+            }
 
             return [
 
@@ -38,7 +44,7 @@
 
                 "data" => [
 
-                    "categories" => $categorieManager->findAll(["nom", "ASC"])
+                    "categories" => $tabCategories
                     
                 ]
 

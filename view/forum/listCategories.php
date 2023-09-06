@@ -5,6 +5,7 @@ $categories = $result["data"]['categories'];
 <?php
 
 foreach($categories as $categorie ){
+    var_dump($categorie);
     ?>
         <a href="index.php?ctrl=forum&action=listCategorieTopics&id=<?=$categorie->getId()?>">
         <?=$categorie->getNom()?></a><br>

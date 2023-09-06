@@ -58,7 +58,6 @@
                 $sql = ("UPDATE topic SET fermer=0 WHERE id_topic =:id");
             }
             DAO::select($sql,['id'=>$id]);  
-            
         }
         
       

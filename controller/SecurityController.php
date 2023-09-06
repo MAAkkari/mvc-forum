@@ -74,8 +74,6 @@
                     $userManager->add($dataUser);
                     Session::addFlash("success","inscription reussi");
                     $this->redirectTo("security" , "login");
-                    
-                    
                 }
                 else {
                     switch(true){
