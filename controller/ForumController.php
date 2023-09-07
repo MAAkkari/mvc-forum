@@ -34,8 +34,8 @@
             $categs=$categorieManager->findAll(["nom", "ASC"]);
             $tabCategories=[];
             foreach($categs as $categorie){
-                var_dump( $categorieManager->infoCategorie($categorie->getId()) );die;
-                array_push($tabCategories , $categorieManager->infoCategorie($categorie->getId()));
+                $info=$categorieManager->infoCategorie($categorie->getId());
+                $tabCategories[$categorie->getId()] = $info;
             }
 
             return [

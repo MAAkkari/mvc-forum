@@ -61,9 +61,15 @@
         }
         public function MadeBy($user=null){
             
-            if ( $user != null ) {
+            if ( $user != null && $this->getUser() !=null) {
                 if (  $this->getUser()->getId() == $user->getId() || $user->getRole() == 'ROLE_ADMIN') {return true;} else {return false ;}
-            } else {return false ;}
+            } else {
+                if ( $user != null && $this->getUser() ==null) {
+                    
+                    if ( $user->getRole() == 'ROLE_ADMIN') {return true;} else {return false ;}
+
+                } else {return false ;}
+                
     
         }
 
@@ -75,3 +81,4 @@
 
 
     }
+}

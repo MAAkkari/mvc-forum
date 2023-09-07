@@ -19,8 +19,10 @@ if( $topics ){
             <a href="index.php?ctrl=forum&action=listTopicPosts&id=<?=$topic->getId()?>">
             Topic <?= $x." : ". $topic->getTitre()?></a> <br>
             <p> <?=$topic->getDateCreation() ?> </p>
-            <p>de: <?=$topic->getUser() ?> </p>
-            <?php if ($topic->getDateModif()  != null ) {?>
+            <?php if ( $topic->getUser() != null ) { ?>
+                <p>de: <?=$topic->getUser() ?> </p>
+            <?php } else { ?><p>de: <?= "(utilisateur Supprimer)" ?> </p> 
+            <?php } if ($topic->getDateModif()  != null ) {?>
             <p>modifier le : <?=$topic->getDateModif()?></p>
 
 

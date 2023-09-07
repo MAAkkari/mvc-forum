@@ -46,3 +46,8 @@
     display:flex;
     column-gap: 25px;
 }
+.categorie_affichage{
+    display:flex; 
+    align-items: center;
+    column-gap: 15px;
+}

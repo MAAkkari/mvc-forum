@@ -22,8 +22,11 @@ if($posts ){
 
         <p><?=  htmlspecialchars_decode($post->getText())  ?></p>  
         <p> <?=$post->getDateCreation() ?> </p>
+        <?php if ($post->getUser() !=null) { ?>
             <p>de: <?=$post->getUser() ?> </p>
-        <?php if ($post->MadeBy($_SESSION["user"]) ) {?>
+        <?php } else { ?> 
+            <p>de <?= "(utilisateur Supprimer)" ?></p>
+        <?php } if (isset($_SESSION["user"])  && $post->MadeBy($_SESSION["user"])  ) {?>
 
             <a style="color:red ;" href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>">Supprimer ce post</a>
 
@@ -42,7 +45,7 @@ if($posts ){
         <input  class="SubmitEditTopic" type="submit" name="submit" value="submit">
 
     </form>
-   
+
 <?php  $x+=1; }
 }
 else { echo " il n'y aucun post dans ce topic ";} 
