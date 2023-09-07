@@ -23,6 +23,12 @@
     align-items: center;
     column-gap: 10px;
 }
+.flexVertical {
+    display:flex;
+    
+    column-gap: 10px;
+    flex-direction: column;
+}
 .formRegister{
     display:flex;
     flex-direction: column;

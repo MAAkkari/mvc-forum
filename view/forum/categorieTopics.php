@@ -20,7 +20,7 @@ if( $topics ){
             Topic <?= $x." : ". $topic->getTitre()?></a> <br>
             <p> <?=$topic->getDateCreation() ?> </p>
             <?php if ( $topic->getUser() != null ) { ?>
-                <p>de: <?=$topic->getUser() ?> </p>
+                <a href="index.php?ctrl=security&action=profile&id=<?=$topic->getUser()->getId() ?>">de: <?=$topic->getUser() ?> </a>
             <?php } else { ?><p>de: <?= "(utilisateur Supprimer)" ?> </p> 
             <?php } if ($topic->getDateModif()  != null ) {?>
             <p>modifier le : <?=$topic->getDateModif()?></p>

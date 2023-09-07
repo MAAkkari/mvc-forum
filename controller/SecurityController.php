@@ -100,6 +100,27 @@
 
             $this->redirectTo("forum" , "listCategories");
         }
+
+        public function profile($id){
+            $userManager = new UserManager;
+            $topicManager = new TopicManager ; 
+            $postManager = new PostManager; 
+            
+            $user = $userManager->findOneById($id);
+            $postManager->findAllByUser($id);
+            
+            return[
+
+                "view"=> VIEW_DIR."forum/profile.php" ,
+                "data" => [
+                    "user"=> $user,
+                    "posts"=> $postManager->findAllByUser($id),
+                    "topics"=> $topicManager->findAllByUser($id)
+                ]
+            ];
+               
+                
+        }
     }
 
 

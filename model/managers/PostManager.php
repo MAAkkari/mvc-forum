@@ -38,6 +38,18 @@
 
             DAO::Select($sql);
         }
+        public function findAllByUser($id){
+            $sql = "SELECT *
+            FROM ".$this->tableName." a
+            WHERE a.user_id=:id
+            ";
+          
+            return $this->getMultipleResults(
+                DAO::select($sql, ['id' => $id]), 
+                $this->className
+            );
+            
+        }
         
 
     }

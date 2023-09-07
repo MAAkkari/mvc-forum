@@ -34,7 +34,7 @@
                         
                         if(App\Session::getUser()){
                             ?>
-                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                            <a href="index.php?ctrl=security&action=profile&id=<?= $_SESSION["user"]->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                             <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                             <a href="index.php?ctrl=forum&action=listCategories">la liste des Categories</a>
                             <?php
@@ -43,7 +43,6 @@
                             ?>
                             <a href="index.php?ctrl=security&action=login">Se connecter</a>
                             <a href="index.php?ctrl=security&action=register">S'inscrire</a>
-                           
                             <a href="index.php?ctrl=forum&action=listCategories">la liste des Categories</a>
                         <?php
                         }

@@ -59,6 +59,19 @@
             }
             DAO::select($sql,['id'=>$id]);  
         }
+        public function findAllByUser($id){
+            $sql = "SELECT *
+            FROM ".$this->tableName." a
+            WHERE a.user_id= :id
+            ORDER BY dateCreation ASC
+            ";
+
+            return $this->getMultipleResults(
+                DAO::select($sql, ['id' => $id]), 
+                $this->className
+            );
+            
+        }
         
       
 

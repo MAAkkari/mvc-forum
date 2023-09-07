@@ -79,7 +79,7 @@
         public function getDateCreation(){
         if( $this->dateCreation->format("d/m/Y") == date_create()->format("d/m/Y") ){
             $formattedDate = $this->dateCreation->format("H:i:s"); }
-            else {  $formattedDate = $this->dateCreation->format("d/m/Y"); }
+            else {  $formattedDate = $this->dateCreation->format("d/m/Y, H:i:s"); }
             return $formattedDate;
         }
 
@@ -92,7 +92,7 @@
                 if ( $this->dateModif != null ){
                 if( $this->dateModif->format("d/m/Y") == date_create()->format("d/m/Y") ){
                     $formattedDate = $this->dateModif->format("H:i:s"); }
-                    else {  $formattedDate = $this->dateModif->format("d/m/Y"); }
+                    else {  $formattedDate = $this->dateModif->format("d/m/Y, H:i:s"); }
                     return $formattedDate;
                 } else { return null;}
                 }
