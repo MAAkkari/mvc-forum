@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
     <script src="https://kit.fontawesome.com/a0cb91d4d8.js" crossorigin="anonymous"></script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>FORUM</title>
 </head>
 <body>
@@ -19,39 +21,44 @@
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             <header>
-                <nav>
-                    <div id="nav-left">
-                        <figure><img src="" alt="logoForum"></figure>
-                        <a href="/mvc-forum/">Accueil</a>
-                        <?php
-                        
-                        if(App\Session::isAdmin()){
-                            ?>
-                            <a href="index.php?ctrl=security&action=listUsers">Liste des utilisateurs</a>
-                            <?php } ?>
+                <nav id="layout_nav">
+
+                   <div class="left_nav">
+                        <figure> <a class="logo_a" href="/mvc-forum/"><img src="public\img\Forum_radio2.png" alt="logoForum">  </a></figure>
+                    
+
+                        <div id="search_bar" >
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input placeholder="search for something awesome !" type="text">
+                        </div>
+                        <a class="browse_link" href="index.php?ctrl=forum&action=listCategories"><i class="fa-solid fa-list"></i> Browse</a>
                     </div>
-                    <div id="nav-right">
-                    <?php
+                    
+                    <div class="right_nav">
                         
-                        if(App\Session::getUser()){
-                            ?>
-                            <a href="index.php?ctrl=security&action=profile&id=<?= $_SESSION["user"]->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                            <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
-                            <a href="index.php?ctrl=forum&action=listCategories">la liste des Categories</a>
                             <?php
-                        }
-                        else{
-                            ?>
-                            <a href="index.php?ctrl=security&action=login">Se connecter</a>
-                            <a href="index.php?ctrl=security&action=register">S'inscrire</a>
-                            <a href="index.php?ctrl=forum&action=listCategories">la liste des Categories</a>
-                        <?php
-                        }
-                   
-                        
-                    ?>
-                    </div>
+                            if(App\Session::isAdmin()){
+                                ?>
+                                <a href="index.php?ctrl=security&action=listUsers"><i class="fa-solid fa-people-group"></i></a>
+                                <?php } 
+
+                            if(App\Session::getUser()){
+                                ?>
+                                <a class="profile_link" href="index.php?ctrl=security&action=profile&id=<?= $_SESSION["user"]->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                                <a href="index.php?ctrl=security&action=logout"><i class="fa-solid fa-door-open"></i></a>
+                                
+                                <?php
+                            }
+                            else{
+                                ?>
+                                <a class="login_btn" href="index.php?ctrl=security&action=login">Se connecter</a>
+                                <a class="register_btn" href="index.php?ctrl=security&action=register">S'inscrire</a>
+                            <?php
+                            } ?>
+                   </div>
+
                 </nav>
+
             </header>
             
             <main id="forum">

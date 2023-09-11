@@ -1,5 +1,10 @@
-
-.FormTopic{
+*{
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+/* .FormTopic{
     display:none;
     
 }
@@ -56,4 +61,142 @@
     display:flex; 
     align-items: center;
     column-gap: 15px;
+} */
+body{
+    background: #282828;
 }
+
+#layout_nav{
+    display: flex ; 
+    align-items: center;
+    width:100%;
+    justify-content: space-between;
+    padding:0px 30px 0px 30px;
+    
+    
+}
+#layout_nav input{
+    border-radius: 40px ;
+    width:380px;
+    max-width: 450px;
+    min-width: 250px;
+    height: 35px;
+    background: #D9D9D9;
+    padding-left:50px ;
+    position: relative;
+    border: none ;
+    
+
+}
+#layout_nav img{
+border-radius: 5px;
+width: 100px;
+height: 55px;
+flex-shrink: 0;
+margin-top: 10px;
+}
+header{
+    background: #4A4A4A;
+    width : 100%; 
+    min-height: 80px ;
+    column-gap: 50px;
+    
+}
+.fa-magnifying-glass{
+    margin-left: 20px;
+    position:absolute;
+    z-index: 10;
+    font-weight: bolder;
+}
+#search_bar{
+    display:flex;
+    align-items: center;
+    
+    
+}   
+header a {
+    text-decoration: none;
+    color : white; 
+}
+.register_btn{
+    background: #EB770D;
+    width:140px ; 
+    height: 50px;
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+    padding-top: 8px;
+    border-radius: 5px;
+}
+.left_nav{
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+    height:80px;
+}
+.right_nav{
+    display: flex;
+    column-gap: 20px ;
+    align-items: center;
+    
+}
+.login_btn{
+    background: #2e2c2c;
+    width:130px ; 
+    height: 45px;
+    text-align: center;
+    padding-top: 9px;
+    font-size: 17px;
+    border-radius: 10px;
+}
+.fa-list{
+    margin-right: 7px;
+    font-size: 20px;
+}
+.browse_link{
+    font-size: 18px;
+}
+.fa-user{
+    background-color: #EB770D ;
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    text-align: center;
+    padding-top: 13px;
+    font-size: 22px;
+    color:black;
+    margin-right: 5px;
+    transition: all 0.5s ease-in-out;
+}
+.profile_link{
+    width: 110px;
+    border:none;
+    border-radius: 50px;
+    transition: all 0.5s ease-in-out;
+    font-weight: 600;
+}
+.profile_link a {
+    
+}
+.profile_link:hover{
+    background-color: #EB770D;
+    color:black;
+    
+}
+.profile_link:hover .fas.fa-user {
+    background-color: #181717;
+    color:rgb(202, 192, 192);
+  }
+  .titre_page{
+    text-align: center;
+    margin-top: 25px;
+    color:white;
+  }
+  .categorie_affichage{
+    display: flex;
+    color :white;
+  }
+  .categorie_affichage a{
+    color:white;
+  }
+  
