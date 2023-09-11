@@ -14,9 +14,11 @@ $posts = $result["data"]['posts'];
     <p>email : <?= $user->getEmail() ?></p>
 <?php }?>
 
-<p>dernier topics de <?= $user->getPseudo() ?></p>
+<h3>dernier topics de <?= $user->getPseudo() ?></h3>
+
+
 <div class="flexVertical ">
-<?php $x=1;
+<?php if ( $topics != null ){ $x=1;
     foreach($topics as $topic){ 
        ?>
     <div class="flex">
@@ -31,12 +33,13 @@ $posts = $result["data"]['posts'];
 <?php $x+=1; 
 if ($x >= 5) {
         break; 
-    }} ?> 
+    }} }else {?><p>Cet utilisateur n'a publicer aucun topic :c</p> <?php } ?>
 </div>
-<p>dernier posts <?= $user->getPseudo() ?></p>
+<h3>dernier posts <?= $user->getPseudo() ?></h3>
 
 <div class="flexVertical ">
-<?php $y=1;
+<?php 
+if ( $posts != null ){$y=1;
 
     foreach($posts as $post){ ?>
     
@@ -45,5 +48,5 @@ if ($x >= 5) {
 <?php $y+=1; 
 if ($y >= 5) {
         break;
-    }} ?> 
+    }} }else{ ?><p>cet utilisateur n'a publier aucun post :c</p><?php } 
 

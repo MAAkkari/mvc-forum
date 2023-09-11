@@ -21,13 +21,13 @@
             <header>
                 <nav>
                     <div id="nav-left">
-                        <a href="">Accueil</a>
-                        <a href="index.php?ctrl=security&action=listUsers">Liste des utilisateurs</a>
+                        <figure><img src="" alt="logoForum"></figure>
+                        <a href="/mvc-forum/">Accueil</a>
                         <?php
                         
                         if(App\Session::isAdmin()){
                             ?>
-                            <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
+                            <a href="index.php?ctrl=security&action=listUsers">Liste des utilisateurs</a>
                             <?php } ?>
                     </div>
                     <div id="nav-right">

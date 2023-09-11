@@ -105,7 +105,7 @@
             $userManager = new UserManager;
             $topicManager = new TopicManager ; 
             $postManager = new PostManager; 
-            
+            if ($userManager->findOneById($id) !=null  ){
             $user = $userManager->findOneById($id);
             $postManager->findAllByUser($id);
             
@@ -118,10 +118,15 @@
                     "topics"=> $topicManager->findAllByUser($id)
                 ]
             ];
+        }else{
+            Session::addFlash("error","utilisateur inconnue");
+            $this->redirectTo("forum" , "listCategories");
+        }
                
                 
         }
         public function listUsers(){
+            if ( $_SESSION["user"] !=null && $_SESSION["user"]->getRole = "ROLE_ADMIN" ){
             $useManager = new UserManager; 
             return[
 
@@ -130,13 +135,23 @@
                     "user"=> $useManager->findAll(["dateInscription", "DESC"]),
                 ]
             ];
+            
+        } else {
+            $this->redirectTo("forum" , "listCategories");
+        }
         }
 
         public function deleteUser($id){
+            if ( $_SESSION["user"] !=null &&  $_SESSION["user"]->getRole = "ROLE_ADMIN" ){
             $userManager = new UserManager; 
             $userManager->delete($id);
-            $this->redirectTo("forum" , "listUsers");
             Session::addFlash("success","Suppression de l'utilisateur reussi ! ");
+            $this->redirectTo("forum" , "listUsers");
+            }
+            else{
+                Session::addFlash("error","Page inconnue");
+                $this->redirectTo("forum" , "listCategories");
+            }
            
         }
     }
