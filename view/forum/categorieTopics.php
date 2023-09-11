@@ -45,7 +45,7 @@ if( $topics ){
             <?php } else { ?> 
                 <p> <?php if( $topic->getFermer() == 1) {?>
                         <i class="fa-solid fa-lock"></i> <?php }
-                    else {?><i class="fa-solid fa-unlock"></i> <?php } ?> </p>
+                    else {?> <?php } ?> </p>
             <?php } ?>
 
         

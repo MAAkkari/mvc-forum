@@ -22,6 +22,7 @@
                 <nav>
                     <div id="nav-left">
                         <a href="">Accueil</a>
+                        <a href="index.php?ctrl=security&action=listUsers">Liste des utilisateurs</a>
                         <?php
                         
                         if(App\Session::isAdmin()){

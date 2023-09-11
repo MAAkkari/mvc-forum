@@ -121,6 +121,24 @@
                
                 
         }
+        public function listUsers(){
+            $useManager = new UserManager; 
+            return[
+
+                "view"=> VIEW_DIR."forum/listUsers.php" ,
+                "data" => [
+                    "user"=> $useManager->findAll(["dateInscription", "DESC"]),
+                ]
+            ];
+        }
+
+        public function deleteUser($id){
+            $userManager = new UserManager; 
+            $userManager->delete($id);
+            $this->redirectTo("forum" , "listUsers");
+            Session::addFlash("success","Suppression de l'utilisateur reussi ! ");
+           
+        }
     }
 
 
