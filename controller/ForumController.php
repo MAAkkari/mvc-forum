@@ -31,19 +31,27 @@
             // On récupère les catégories et on les envoie à la vue
 
             $categorieManager = new CategorieManager();
+            $topicManager = new TopicManager();
             $categs=$categorieManager->findAll(["nom", "ASC"]);
             $tabCategories=[];
             foreach($categs as $categorie){
                 $info=$categorieManager->infoCategorie($categorie->getId());
                 $tabCategories[$categorie->getId()] = $info;
             }
+            $totalTopic = $topicManager->findAll();
+            $count = 0;
+
+            foreach ($totalTopic as $topic) {
+                $count++;
+            }
+            
 
             return [
 
                 "view" => VIEW_DIR."forum/listCategories.php",
 
                 "data" => [
-
+                    "totalTopics"=>$count,
                     "categories" => $tabCategories
                     
                 ]

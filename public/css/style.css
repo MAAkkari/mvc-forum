@@ -64,6 +64,10 @@
 } */
 body{
     background: #282828;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 #layout_nav{
@@ -96,7 +100,7 @@ flex-shrink: 0;
 margin-top: 10px;
 }
 header{
-    background: #4A4A4A;
+    background: #161616;
     width : 100%; 
     min-height: 80px ;
     column-gap: 50px;
@@ -130,7 +134,7 @@ header a {
 }
 .left_nav{
     display: flex;
-    column-gap: 30px;
+    column-gap: 45px;
     align-items: center;
     height:80px;
 }
@@ -188,15 +192,129 @@ header a {
     color:rgb(202, 192, 192);
   }
   .titre_page{
-    text-align: center;
-    margin-top: 25px;
+    text-align: left;
+    margin-top: 50px;
     color:white;
+    font-size: 15px;
+    width:70%;
   }
   .categorie_affichage{
+    
     display: flex;
     color :white;
-  }
-  .categorie_affichage a{
-    color:white;
+    width:70%;
+    margin-top: 10px;
+    height: 100px ;
+    background: #4A4A4A;
+    border-bottom: 3px solid #6A6767;
+    padding: 10px 25px 10px 15px ;
+    align-items: center;
+   justify-content: space-between;
   }
   
+  .categorie_nbr{
+    color: #E18111;
+    text-align: center;
+    line-height: normal;
+    font-weight: 275;
+    font-style: normal;
+    width: 70px;
+    height: 70px;
+    background: #282828;
+    font-size: 34px ;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  .all_categories{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+  }
+  .categorie_titre{
+    color: #D9D9D9;
+    text-decoration: none;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .titre_nbr_categorie{
+    display:flex;
+    align-items: center;
+    column-gap: 10px;
+    width:300px
+  }
+  .nbp_nbt_categorie{
+    display: flex;
+    justify-content: space-between;
+    width:50%;
+    align-items: center;
+  }
+  .nbp_categorie p{
+    color: #938989;
+    font-size: 13px;
+    font-weight: bolder;
+  }
+  .nbp_categorie h4{
+    margin-top: -5px;
+    font-size: 26px;
+    font-weight: 500;
+    
+  }
+  .activité_categorie{
+    color: #a8a6a6;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+  }
+  .popularité_categorie p{
+    color: #938989;
+    font-size: 14px;
+    font-weight: bolder;
+  }
+  .black_line{
+    width:150px;
+    height: 3px;
+    background:black;
+    position: relative;
+  }
+  .orange_line{
+    width:20px;
+    height: 3px;
+    background:rgb(230, 133, 6);
+    position: absolute;
+    top:0px;
+  }
+footer{
+    height: 100px;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    bottom: 0%;
+    text-decoration: none;
+    display:flex;
+    justify-content: center;
+    align-items: center;    
+  }
+
+footer a {
+    text-align: center;
+    text-decoration: none;
+    color : white;
+  }
+
+footer p {
+    color:white;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    text-align: center;
+    width: 100%;
+}

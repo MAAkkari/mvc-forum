@@ -21,10 +21,10 @@ if($posts ){
     <div class="flex" >
 
         <p><?=  htmlspecialchars_decode($post->getText())  ?></p>  
-        <p> <?=$post->getDateCreation() ?> </p>
+        <p> <?= $post->getDateCreation() ?> </p>
         <?php if ($post->getUser() !=null) { ?>
             <p>de: <?=$post->getUser() ?> </p>
-        <?php } else { ?> 
+        <?php } else { ?>
             <p>de <?= "(utilisateur Supprimer)" ?></p>
         <?php } if (isset($_SESSION["user"])  && $post->MadeBy($_SESSION["user"])  ) {?>
 

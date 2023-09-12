@@ -8,7 +8,10 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
 }
 
 ?>
-<h1> <?= $categorie->getNom() ?></h1>
+
+<p><a href="index.php?ctrl=forum&action=listCategories"> Categories </a> >
+ <a href="index.php?ctrl=forum&action=listCategorieTopics&id=<?=$categorie->getId()?>"><?= $categorie->getNom() ?></a> > </p>
+
 <?php
 $x=1;
 if( $topics ){
@@ -21,7 +24,7 @@ if( $topics ){
             <p> <?=$topic->getDateCreation() ?> </p>
             <?php if ( $topic->getUser() != null ) { ?>
                 <a href="index.php?ctrl=security&action=profile&id=<?=$topic->getUser()->getId() ?>">de: <?=$topic->getUser() ?> </a>
-            <?php } else { ?><p>de: <?= "(utilisateur Supprimer)" ?> </p> 
+            <?php } else { ?><p>de: <?= "(utilisateur Supprimer)" ?> </p>
             <?php } if ($topic->getDateModif()  != null ) {?>
             <p>modifier le : <?=$topic->getDateModif()?></p>
 
