@@ -46,12 +46,7 @@
     height: 40px;
 
 }
-.fa-unlock{
-    color:green;
-}
-.fa-lock{
-    color:red ;
-}
+
 #nav-right{
     margin-top: 10px;
     display:flex;
@@ -92,6 +87,14 @@ body{
     
 
 }
+.fa-unlock{
+    color:rgb(141, 194, 141);
+    font-size: 22px;
+}
+.fa-lock{
+    color:rgb(197, 123, 123) ;
+    font-size: 22px;
+}
 #layout_nav img{
 border-radius: 5px;
 width: 100px;
@@ -106,6 +109,9 @@ header{
     column-gap: 50px;
     
 }
+
+
+
 .fa-magnifying-glass{
     margin-left: 20px;
     position:absolute;
@@ -197,13 +203,18 @@ header a {
     color:white;
     font-size: 15px;
     width:70%;
+    
+  }
+  .titre_page a  { 
+    color : white;
+    text-decoration: none;
   }
   .categorie_affichage{
     
     display: flex;
     color :white;
     width:70%;
-    margin-top: 10px;
+    margin-top: 3px;
     height: 100px ;
     background: #4A4A4A;
     border-bottom: 3px solid #6A6767;
@@ -243,6 +254,14 @@ header a {
     font-weight: 400;
     line-height: normal;
   }
+  .categorie_titre2{
+    color: #D9D9D9;
+    text-decoration: none;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
   .titre_nbr_categorie{
     display:flex;
     align-items: center;
@@ -272,6 +291,7 @@ header a {
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
+    width:130px;
   }
   .popularité_categorie p{
     color: #938989;
@@ -300,7 +320,8 @@ footer{
     text-decoration: none;
     display:flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
+    
   }
 
 footer a {
@@ -317,4 +338,117 @@ footer p {
     column-gap: 20px;
     text-align: center;
     width: 100%;
+}
+.topic_creator{
+    display: block;
+    width:100px;
+    text-decoration: none;
+    color : rgb(214, 209, 209) ;
+    text-align: left;
+    font-weight: 500;
+    font-size: 16px;
+    
+    
+}
+.edit_btn{
+    background-color: transparent;
+    border:none;
+    color : white; 
+    font-size: 20px;
+    cursor:pointer;
+    
+}
+.edit_supp{
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+.supp_btn{
+    color : rgb(224, 114, 114);
+    font-size: 20px;
+}
+.FormTopic{
+    display: none;
+    height: 0px;
+    width:70%;
+    padding-left: 30px;
+    background-color: rgb(109, 108, 108);
+    position:relative;
+    animation: slideUp 1s ease-in-out forwards;
+    position: relative;
+}
+@keyframes slideUp {
+    0% {
+        top: 0;
+        height: 0px;
+    }
+    100% {
+        top: -70px;
+        height: 70px;
+    }
+}
+.FormActive{
+    display:flex !important;
+    align-items: center ;
+    column-gap: 10px;
+    position: relative;
+    z-index:-1;
+    height: 70px;   
+    animation: slideDown 0.3s ease-in-out forwards;
+
+    position: relative;
+    top: 0;
+}
+@keyframes slideDown {
+    0% {
+        height: 0px;
+        top: -70px;
+    }
+    100% {
+        top: 0;
+        height: 70px;
+    }
+}
+
+   
+    
+
+
+
+.FormTopic label{
+    color:white; 
+    font-size: 20px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+.FormTopic input {
+    background-color:#4A4A4A;
+    border:none;
+    
+    height: 35px;
+    border-radius: 5px;
+    color:white;
+    font-weight: 400;
+    padding:0px 5px 0px 8px ;
+}
+.FormTopic select {
+    background-color:#4A4A4A;
+    border:none;
+    cursor: pointer;
+    height: 35px;
+    border-radius: 5px;
+    color:white;
+    font-weight: 400;
+    padding:0px 5px 0px 8px ;
+}
+#SubmitEditTopic {
+    width: 70px;
+    text-align: center;
+    font-weight: 800 ;
+    padding:0px 8px 0px 8px ;
+    font-size: 15px;
+    width:90px;
+    margin-left: 10px;
+    cursor: pointer;
 }

@@ -10,11 +10,11 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
 ?>
 
 
-
+<p><a href="index.php?ctrl=forum&action=listCategories"> Categories </a> >
+<a href="index.php?ctrl=forum&action=listCategorieTopics&id=<?=$categorie->getId()?>"><?= $categorie->getNom() ?></a> > </p> 
 
 <div class="all_categories">
-<h1 class="titre_page"><a href="index.php?ctrl=forum&action=listCategories"> Categories </a> >
-<a href="index.php?ctrl=forum&action=listCategorieTopics&id=<?=$categorie->getId()?>"><?= $categorie->getNom() ?></a> > </h1> 
+    <h1 class="titre_page">liste categories ></h1>
 <?php
     $x=1;
     if( $topics ){
@@ -26,7 +26,7 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
 
                 <div class="titre_nbr_categorie">
                     <p class="categorie_nbr"><?=($x<10)? '0'.$x:$x ?></p>
-                    <a  class="categorie_titre2" href="index.php?ctrl=forum&action=listTopicPosts&id=<?=$topic->getId()?>">
+                    <a href="index.php?ctrl=forum&action=listTopicPosts&id=<?=$topic->getId()?>">
                     <?= $topic->getTitre() ?></a>
                 </div>
 
@@ -34,7 +34,7 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
                     
 
                     <div class="activité_categorie">
-                        <p>CREE </p>
+                        <p>CREE LE</p>
                         <p> <?=$topic->getDateCreation() ?> </p>
                     </div>
 
@@ -49,21 +49,21 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
                     
                     <div class="popularité_categorie">
                     <?php if ( $topic->getUser() != null ) { ?>
-                        <a class="topic_creator" href="index.php?ctrl=security&action=profile&id=<?=$topic->getUser()->getId() ?>"><?=$topic->getUser() ?> </a>
-                    <?php } else { ?><p class="topic_creator"><?= "( utilisateur Supprimer )" ?> </p> <?php } ?>
+                        <a href="index.php?ctrl=security&action=profile&id=<?=$topic->getUser()->getId() ?>">de: <?=$topic->getUser() ?> </a>
+                    <?php } else { ?><p>de: <?= "( utilisateur Supprimer )" ?> </p> <?php } ?>
                     </div>
 
-                    
-                        <div class="edit_supp">
-                            <?php  if (isset($_SESSION["user"]) && $topic->MadeBy($_SESSION["user"]) ) {?> 
-                            <!-- boutton supprimer  -->
-                            <a class="supp_btn" href="index.php?ctrl=forum&action=deleteTopic&id=<?= $topic->getId() ?>"><i class="fa-solid fa-trash"></i> </a>
+                    <div>
+                    <?php  if (isset($_SESSION["user"]) && $topic->MadeBy($_SESSION["user"]) ) {?> 
+                    <p>
 
-                            <!-- button qui affiche le form de modification  -->
-                            <button class="edit_btn" onclick=" if( document.querySelector('.FormTopic<?=$x?>').classList.contains('FormActive') ){
-                            document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')}else  {
-                            document.querySelector('.FormTopic<?=$x?>').classList.add('FormActive') }"><i class="fa-solid fa-pen-to-square"></i></button>
-                        </div>
+                        <!-- boutton supprimer  -->
+                        <a style="color:red ;" href="index.php?ctrl=forum&action=deleteTopic&id=<?= $topic->getId() ?>"><i class="fa-solid fa-trash"></i> </a>
+
+                        <!-- button qui affiche le form de modification  -->
+                        <button onclick=" if( document.querySelector('.FormTopic<?=$x?>').classList.contains('FormActive') ){
+                        document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')}else  {
+                        document.querySelector('.FormTopic<?=$x?>').classList.add('FormActive') }"><i class="fa-solid fa-pen-to-square"></i></button>
 
                         <!-- boutton verouiller -->
                         <a href="index.php?ctrl=forum&action=lock&id=<?=$topic->getId()?>"> 
@@ -71,16 +71,16 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
                             <i class="fa-solid fa-lock"></i> <?php }
                         else {?><i class="fa-solid fa-unlock"></i> <?php } ?>   
                         </a> 
-                 
+                    </p>
                     
                         <?php } else { ?> 
                         <p> <?php if( $topic->getFermer() == 1) {?>
                                 <i class="fa-solid fa-lock"></i> <?php }
                             else {?> <?php } ?> </p>
-                        <?php } ?>
+                    <?php } ?>
 
 
-                    
+                    </div>
 
                 </div>
 
@@ -107,7 +107,7 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
                     <option selected value="<?= $id ?>"><?= $nom ?></option>
                     <?php } }?>
             </select>  
-            <input  id="SubmitEditTopic" type="submit" name="submit" value="submit">
+            <input  class="SubmitEditTopic" type="submit" name="submit" value="submit">
 
             </form>
             <?php
