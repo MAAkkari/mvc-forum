@@ -1,9 +1,9 @@
 <?php 
     $posts = $result["data"]["posts"];
     $topic =$result["data"]["topic"];
-   
 ?>
-<div class="LiensPathForum">
+
+<h1 class="path_post titre_page">
 
     <a href="index.php?ctrl=forum&action=listCategories">Liste catrogories</a> 
     <p>> </p> 
@@ -11,30 +11,41 @@
     <?= $topic->getCategorie()->getNom()?></a>
     <p>> </p>
     <p><?= $topic->getTitre()?></p>
+    
+</h1>
 
-</div>
-
-
+<div class="allPosts">
 <?php $x=1;
 if($posts ){
  foreach($posts as $post){ ?>
-    <div class="flex" >
+    <div class="eachPost">
 
-        <p><?=  htmlspecialchars_decode($post->getText())  ?></p>  
-        <p> <?= $post->getDateCreation() ?> </p>
-        <?php if ($post->getUser() !=null) { ?>
-            <p>de: <?=$post->getUser() ?> </p>
-        <?php } else { ?>
-            <p>de <?= "(utilisateur Supprimer)" ?></p>
-        <?php } if (isset($_SESSION["user"])  && $post->MadeBy($_SESSION["user"])  ) {?>
+        
+        <div class="post_info"> 
+            <?php if ($post->getUser() !=null) { ?>
+            <figure><img class="profile_pic" src="https://picsum.photos/100/100" alt=""></figure>
+            <div>
+                <p>de: <?=$post->getUser() ?> </p>
+                <?php } else { ?>
+                <p>de <?= "(utilisateur Supprimer)" ?></p>
+                <?php } ?>
+                <p> <?= $post->getDateCreation() ?> </p>
+            </div>
+        </div>
 
-            <a style="color:red ;" href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>">Supprimer ce post</a>
 
-            <button onclick=" if( document.querySelector('.FormTopic<?=$x?>').classList.contains('FormActive') ){
-            document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')} else {
-            document.querySelector('.FormTopic<?=$x?>').classList.add('FormActive') }">modifier</button> 
+        <p class="post_text"><?=  htmlspecialchars_decode($post->getText())  ?></p>  
+        
+       <div class="post_btns">
+            <?php if (isset($_SESSION["user"])  && $post->MadeBy($_SESSION["user"])  ) { ?>
+                <a  href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>"><i class="fa-solid fa-trash"></i></a>
 
-        <?php } ?>
+                <button class="edit_btn edit_post" onclick=" if( document.querySelector('.FormTopic<?=$x?>').classList.contains('FormActive') ){
+                document.querySelector('.FormTopic<?=$x?>').classList.remove('FormActive')} else {
+                document.querySelector('.FormTopic<?=$x?>').classList.add('FormActive') }"><i class=" fa-solid fa-pen-to-square"></i></button> 
+
+            <?php } ?>
+        </div>
 
     </div>
 
@@ -47,8 +58,9 @@ if($posts ){
     </form>
 
 <?php  $x+=1; }
-}
-else { echo " il n'y aucun post dans ce topic ";} 
+?> </div>
+<?php
+ }  else { echo " il n'y aucun post dans ce topic :c ";} 
 if ($topic->getFermer()==0){ 
     if(App\Session::getUser()){?>
         <form method="post" action="index.php?ctrl=forum&action=nvPost&id=<?= $topic->getId() ?>">

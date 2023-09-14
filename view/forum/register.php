@@ -12,6 +12,6 @@
     <label for="mdp2">confirmer le mot de passe</label>
     <input type="password" name="mdp2">
 
-    <input type="submit" name="submit" value="submit">
+    <input class="submit" type="submit" name="submit" value="submit">
 
 </form>

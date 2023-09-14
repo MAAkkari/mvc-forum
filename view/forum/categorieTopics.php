@@ -21,9 +21,9 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
         foreach($topics as $topic ){
         
         
-        ?>  <div class="categorie_affichage">
-                
-
+        ?>  
+        
+        <div class="categorie_affichage" style="display:flex;">
                 <div class="titre_nbr_categorie">
                     <p class="categorie_nbr"><?=($x<10)? '0'.$x:$x ?></p>
                     <a  class="categorie_titre2" href="index.php?ctrl=forum&action=listTopicPosts&id=<?=$topic->getId()?>">
@@ -75,19 +75,15 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
                     
                         <?php } else { ?> 
                         <p> <?php if( $topic->getFermer() == 1) {?>
-                                <i class="fa-solid fa-lock"></i> <?php }
-                            else {?> <?php } ?> </p>
+                                <i class="fa-solid fa-lock"></i> </div> <?php }
+                            else {?> </div> <?php } ?> </p>
                         <?php } ?>
 
 
                     
 
                 </div>
-
-                
-
-                
-            </div>
+           </div>
 
             <form class="FormTopic FormTopic<?=$x?>"method="post" action="index.php?ctrl=forum&action=editTopic&id=<?= $topic->getId() ?>">
             <p><label>Titre du topic</label>
@@ -125,18 +121,19 @@ $tab[$Allcategorie->getId()] = $Allcategorie->getNom();
 if(App\Session::getUser()){?>
 
 
-<form method="post" action="index.php?ctrl=forum&action=nvTopic&id=<?= $categorie->getId() ?>">
-    <p><label>Titre du topic</label>
-    <input type="text" name="titre" required></p>
+<form class="FormNewTopic" method="post" action="index.php?ctrl=forum&action=nvTopic&id=<?= $categorie->getId() ?>">
+    <label>TITRE</label>
+    <input placeholder="Titre du Topic" type="text" name="titre" required>
+    <label>TEXTE</label>
+<div class="div_form">
+    <textarea  name="message" required></textarea>
 
-    <p><label>Premier message</label>
-    <input type="text" name="message" required></p>
-
-    <input  type="submit" name="submit" value="submit">
+    <input class="submit_categorie" type="submit" name="submit" value="submit">
+</div>
 </form>
 <?php
 } else { ?> 
-    <p>
+    <p class="p_disconnected">
         <a href="index.php?ctrl=security&action=login">Connecter</a>
         ou 
         <a href="index.php?ctrl=security&action=register"> Inscriver</a>

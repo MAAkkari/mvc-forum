@@ -6,6 +6,6 @@
     <label for="mdp">mot de passe</label>
     <input type="password" name="mdp">
 
-    <input type="submit" name="submit" value="submit">
+    <input class="submit" type="submit" name="submit" value="submit">
 
 </form>
